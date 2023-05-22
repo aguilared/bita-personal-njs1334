@@ -6,6 +6,7 @@ export const UserContext = createContext(initialState);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(0);
+  console.log("Sesssionnn USer", user);
 
   useEffect(() => {
     setUser(window.sessionStorage.getItem("User"));

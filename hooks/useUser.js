@@ -6,6 +6,10 @@ export default function UseUser() {
 
   const [state, setState] = useState({ loadingUser: false, error: false });
 
+  const Signup = ({ email, onSignup }) => {
+    const onClick = useCallback(() => onSignup(email), [email, onSignup]);
+    return <button onClick={onClick} />;
+  };
   const loadUser = useCallback(async (usertoLoad) => {
     console.log("User to load", usertoLoad);
     setState({ loadingUser: true, error: false });
@@ -14,6 +18,7 @@ export default function UseUser() {
     setState({ loadingUser: false, error: false });
     //invoca al contexto
     setUser(usertoLoad);
+    console.log("User from contect", user);
   });
 
   const clearUser = useCallback(() => {

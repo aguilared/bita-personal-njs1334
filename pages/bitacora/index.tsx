@@ -36,15 +36,7 @@ const BitacorasList = (): JSX.Element => {
   console.log("isUser", isUser);
 
   if (!isUser) {
-    return (
-      <div className="bg-bgGray w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <Link href="login" className="className=" bg-white p-2 px-4>
-            Login
-          </Link>
-        </div>
-      </div>
-    );
+    router.push("/login");
   }
 
   const {

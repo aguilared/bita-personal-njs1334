@@ -5,7 +5,7 @@ import { red } from "@mui/material/colors";
 import getBitacoraEvents from "../../services/getBitacoraEvents";
 import dayjs from "dayjs";
 import useSWR from "swr";
-import Interweave from "interweave";
+import { Interweave } from "interweave";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
+import { withStyles, makeStyles } from "@mui/styles";
+import { red } from "@mui/material/colors";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import getBitacoraEvents from "../../../services/getBitacoraEvents";
 import getBitaEventId from "../../../services/getBitaEventId";
 import dayjs from "dayjs";
 import Interweave from "interweave";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Container from "../../../components/Container";
-import { Box } from "@material-ui/core";
+
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -99,12 +100,6 @@ const BitaEventCard = (props: any): JSX.Element => {
           </Typography>{" "}
           <Typography variant="h6" component="div">
             Author: {author}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h2">
-            Tipo Event: {tipoevent}, Event: {event}
-          </Typography>
-          <Typography variant="h6" color="textSecondary" component="h2">
-            <Interweave content={description} />
           </Typography>
         </CardContent>
         <div className="container max-w-4xl m-auto px-4 mt-20">

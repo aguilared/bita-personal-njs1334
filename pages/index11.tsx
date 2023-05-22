@@ -68,18 +68,12 @@ const BitaEventsCard: NextPage = () => {
                       `${event.event.description}`
                     }
                     subheader={
-                      <a
-                        href={`/bitacora/bita_event/${encodeURIComponent(
-                          event.id
-                        )}`}
-                        target={"_blank"}
-                        rel="noreferrer"
-                      >
-                        BitaEventID: {event.id}, {convertDate(event.event_date)}
-                      </a>
+                      "ID:" +
+                      `${event.id}` +
+                      " " +
+                      convertDate(event.bitacora.bitacora_date)
                     }
                   />
-
                   {event.image! ? (
                     <a
                       href={"/static/images/" + `${event.id}` + ".jpg"}
@@ -97,7 +91,7 @@ const BitaEventsCard: NextPage = () => {
                     <></>
                   )}
                   <CardContent sx={{ flex: "1 0 auto" }}>
-                    <Typography>
+                    <Typography variant="h6" component="div">
                       <a
                         href={`/bitacora/view/${encodeURIComponent(
                           event.bitacora_id
@@ -123,6 +117,19 @@ const BitaEventsCard: NextPage = () => {
                       </Link>
                     </Typography>
 
+                    <Typography variant="h6" component="div">
+                      <a
+                        href={`/bitacora/bita_event/${encodeURIComponent(
+                          event.id
+                        )}`}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        BitaEventID: {event.id}
+                        {",  "}
+                      </a>
+                      {convertDate(event.event_date)}
+                    </Typography>
                     <Typography gutterBottom variant="h6" component="h2">
                       Author: {event.bitacora.author.name}
                     </Typography>

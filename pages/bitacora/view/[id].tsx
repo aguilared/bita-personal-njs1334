@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
-import getBitacoraEvents from "../../../services/getBitacoraEvents";
+import { withStyles, makeStyles } from "@mui/styles";
+import { red } from "@mui/material/colors";import getBitacoraEvents from "../../../services/getBitacoraEvents";
 import dayjs from "dayjs";
 import useSWR from "swr";
 import Interweave from "interweave";

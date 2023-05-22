@@ -3,31 +3,44 @@ import Container from "../Container";
 import useUser from "../../hooks/useUser";
 import axios from "axios";
 import router from "next/router";
+import toast, { Toaster } from "react-hot-toast";
 
 const SafeUser = "false";
+const notify = () =>
+  toast.custom((t) => (
+    <div
+      className={`bg-white px-6 py-4 shadow-md rounded-full ${
+        t.visible ? "animate-enter" : "animate-leave"
+      }`}
+    >
+      Toast successfully 👋
+    </div>
+  ));
+
 interface NavbarProps {
   currentUser?: SafeUser | null;
 }
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/bitacora/bita_events/bitaEventsCard", label: "ListBitaEventsCard" },
-  { href: "/login", label: "Login" },
+  { href: "/bitacora/", label: "Admin" },
 ].map((link) => {
   link.key = `nav-link-${link.href}-${link.label}`;
   return link;
 });
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
-  const { isUser, loadUser, clearUser } = useUser(); //to Global
+  const { isUser, clearUser } = useUser(); //to Global
+
   const logout = async () => {
     try {
       await axios.get("/api/auth/logout");
+      clearUser();
+      console.log("Limpio localStorage");
+      router.push("/");
     } catch (error) {
       console.error(error.message);
     }
-    router.push("/");
-    clearUser();
   };
 
   return (
@@ -53,6 +66,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             {label}
           </Link>
         ))}
+
         {isUser ? (
           <button
             onClick={() => logout()}
