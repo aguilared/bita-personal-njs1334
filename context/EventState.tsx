@@ -10,12 +10,25 @@ import axios from "axios";
 
 import { AppReducerEvents } from "./AppReducerEvents";
 import useBitacora from "../hooks/useBitacora";
+import toast, { Toaster } from "react-hot-toast";
+
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
 
 const INITIAL_STATE: Events = {
   events: [],
   loading: false,
 };
+
+const notifyCreate = () =>
+  toast.custom((t) => (
+    <div
+      className={`bg-white px-6 py-4 shadow-md rounded-full ${
+        t.visible ? "animate-enter" : "animate-leave"
+      }`}
+    >
+      Bita-Event Created successfully 👋
+    </div>
+  ));
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -69,6 +82,9 @@ export const EventsProvider = ({ children }: Props): JSX.Element => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bitacora),
         });
+        //notifyCreate();
+        toast.success("Bita-Event created successfully11");
+
         const result1 = await fetch(ENDPOINTT);
         const bitaEventTop = await result1.json();
         //console.log("TopAfterCreate", bitaEventTop);
@@ -96,6 +112,7 @@ export const EventsProvider = ({ children }: Props): JSX.Element => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bitaEvent),
         });
+        toast.success("Bita-Event Updated successfully11");
         dispatch({
           type: "EDIT_BITA_EVENT",
           payload: bitaEvent, //
@@ -120,6 +137,7 @@ export const EventsProvider = ({ children }: Props): JSX.Element => {
           type: "REMOVE_EVENT",
           payload: eventId,
         });
+        toast.success("Bita-Event delected successfully1");
       } catch (error) {
         //setIsError(true);
         console.log("Error borrar", error);

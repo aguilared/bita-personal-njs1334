@@ -21,7 +21,7 @@ import useBitacora from "../../hooks/useBitacora";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import router from "next/router";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useUser from "../../hooks/useUser";
 
 const notify = () => toast("Here is your toast.");
@@ -302,7 +302,10 @@ const BitacorasList = (): JSX.Element => {
             </div>
           </form>
         </div>
-        <button onClick={notify}>Make me a toast</button>
+        <div className="flex-grow text-right px-3 py-1 m-2">
+          <button onClick={notify}>Toast</button>
+          <Toaster />
+        </div>{" "}
         <div className="flex-grow text-right px-3 py-1 m-2">
           <ButtonAddBitacora />
         </div>
